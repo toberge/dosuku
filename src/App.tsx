@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import BoardHolder from './components/BoardHolder';
+import { unsolvedBoard } from './data/SomeBoards';
 
 function App() {
     return (
@@ -11,7 +11,7 @@ function App() {
                 {/*TODO: random permutation of su,do,ku*/}
             </header>
             <main>
-                <BoardHolder />
+                <BoardHolder originalBoard={unsolvedBoard}/>
             </main>
             <footer>
                 <p>sudoku kudosu sukudo</p>

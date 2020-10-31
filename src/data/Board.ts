@@ -37,6 +37,13 @@ export function* getSquare(i: number, j: number, board: Board) {
     }
 }
 
+export function* getNonzero(board: Board) {
+    for (let i = 0; i < N; i++)
+        for (let j = 0; j < N; j++)
+            if (board[i][j] !== 0)
+                yield `${i} ${j}`;
+}
+
 export function hasAllNums(xs: number[]) {
     return xs.filter(x => !nums.includes(x)).length === 0;
 }
