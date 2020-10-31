@@ -1,11 +1,39 @@
 .App {
     text-align: center;
+    min-height: 100%;
+}
+
+.App {
+    display: grid;
+    grid-template-areas:
+        'header'
+        ' main '
+        'footer';
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+}
+
+header {
+    grid-area: header;
+}
+main {
+    grid-area: main;
+}
+footer {
+    grid-area: footer;
 }
 
 main {
-    min-height: 70vh;
+    /*flex-grow: 1;*/
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+header,
+main,
+footer {
+    /*flex-shrink: 0;*/
 }
