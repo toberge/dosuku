@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { N, M, isSolved, getNonzero, Board, EMPTY_BOARD } from '../data/Board';
 import './BoardHolder.css';
 import _ from 'lodash';
+import { LanguageContext } from '../contexts/Language';
 
 // Setting class name...
 function rowBorder(i: number) {
@@ -28,6 +29,7 @@ function Cell({
     onClick: () => void;
     disabled: boolean;
 }) {
+    // Note: This component can hold independent state
     return (
         <button onClick={onClick} disabled={disabled}>
             {value || '-'}
@@ -42,6 +44,7 @@ export default function BoardHolder({
 }) {
     const [board, setBoard] = useState(EMPTY_BOARD); // set in useEffect
     const [blocked, setBlocked] = useState(new Set());
+    const { dictionary } = useContext(LanguageContext);
 
     useEffect(() => {
         // TODO: there should be a better way to do this...
@@ -70,7 +73,7 @@ export default function BoardHolder({
                 </tbody>
             </table>
             <p>
-                <button onClick={checkBoard}>Check</button>
+                <button onClick={checkBoard}>{dictionary.checkBoardButton}</button>
             </p>
         </>
     );
