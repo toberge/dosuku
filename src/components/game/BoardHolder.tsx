@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { N, M, isSolved, getNonzero, Board, EMPTY_BOARD } from '../data/Board';
+import { N, M, isSolved, getNonzero, Board, EMPTY_BOARD } from '../../data/Board';
 import './BoardHolder.css';
 import _ from 'lodash';
-import { LanguageContext } from '../contexts/Language';
+import { LanguageContext } from '../../contexts/Language';
 
 // Setting class name...
 function rowBorder(i: number) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import BoardHolder from './components/BoardHolder';
+import BoardHolder from './components/game/BoardHolder';
 import { unsolvedBoard } from './data/SomeBoards';
 import { LanguageProvider } from './contexts/Language';
 import LanguagePicker from './components/settings/LanguagePicker';
