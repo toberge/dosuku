@@ -1,0 +1,29 @@
+.border-right {
+  border-right: solid 1px var(--border-color);
+}
+
+.border-left {
+  border-left: solid 1px var(--border-color);
+}
+
+.border-bottom {
+  border-bottom: solid 1px var(--border-color);
+  /*padding-bottom: calc(0.1em + 2px) !important;*/
+}
+
+.border-top {
+  border-top: solid 1px var(--border-color);
+}
+
+table {
+  border-spacing: 0;
+}
+
+tbody {
+}
+
+tr, td {
+  margin: 0;
+  padding: 0.25em;
+  border: inherit; /* disabled by default */
+}
