@@ -26,6 +26,12 @@ describe('isSolved', () => {
     it('should NOT accept an unsolved board', () => {
         expect(isSolved(unsolvedBoard)).toBeFalsy();
     });
+    it('should not accept a board with dupes', () => {
+        const board = _.cloneDeep(solvedBoard);
+        board[0][0] = 1;
+        board[8][8] = 2;
+        expect(isSolved(board)).toBeFalsy();
+    });
 });
 
 describe('getNonzero', () => {

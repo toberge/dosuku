@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export type Board = number[][];
 
 export const EMPTY_BOARD: Board = [
@@ -15,20 +17,29 @@ export const EMPTY_BOARD: Board = [
 export const N = 9; // must be divisible by three
 export const M = 3; // the box sizes
 
-const genRange = (n: number) => {
-    let xs: number[] = [];
-    for (let i = 1; i <= n; i++) xs.push(i);
-    return xs;
-};
-
-const nums = genRange(N);
-
-export function* getColumn(i: number, board: Board) {
-    for (const row of board) {
-        yield row[i];
-    }
+function* genRange(n: number) {
+    for (let i = 1; i <= n; i++)
+        yield i;
 }
 
+const nums = new Set(genRange(N));
+
+/**
+ * Get the numbers in column
+ * @param i column index, from 0..M-1
+ * @param board board to fetch from
+ */
+export function* getColumn(i: number, board: Board) {
+    for (const row of board)
+        yield row[i];
+}
+
+/**
+ * Get the numbers in a MxM square
+ * @param i column index, from 0..M-1
+ * @param j row index, from 0..M-1
+ * @param board board to fetch from
+ */
 export function* getSquare(i: number, j: number, board: Board) {
     for (let row = i * M; row < (i + 1) * M; row++) {
         for (let col = j * M; col < (j + 1) * M; col++) {
@@ -37,6 +48,12 @@ export function* getSquare(i: number, j: number, board: Board) {
     }
 }
 
+/**
+ * Get all nonzero (that is, preset) values in a sudoku board
+ * @param board the puzzle to fetch from
+ * @return string with "i j" pair of coordinates
+ *         (for use as a Set key)
+ */
 export function* getNonzero(board: Board) {
     for (let i = 0; i < N; i++)
         for (let j = 0; j < N; j++)
@@ -44,8 +61,15 @@ export function* getNonzero(board: Board) {
                 yield `${i} ${j}`;
 }
 
+/**
+ * Check if all numbers from 1 to N are present in xs
+ * @param xs numbers from a column/row/square
+ */
 export function hasAllNums(xs: number[]) {
-    return xs.filter(x => !nums.includes(x)).length === 0;
+    const foundNums = _.clone(nums);
+    for (const x of xs)
+        foundNums.delete(x);
+    return foundNums.size === 0;
 }
 
 export function isSolved(board: Board) {
