@@ -1,23 +1,33 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 import BoardHolder from './components/game/BoardHolder';
 import { unsolvedBoard } from './data/SomeBoards';
 import { LanguageProvider } from './contexts/Language';
-import LanguagePicker from './components/settings/LanguagePicker';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import MainMenu from './components/MainMenu';
 
 function App() {
     return (
-        <LanguageProvider>
-            <div className="App">
-                <Header/>
-                <main>
-                    <BoardHolder originalBoard={unsolvedBoard}/>
-                </main>
-                <Footer/>
-            </div>
-        </LanguageProvider>
+        <Router>
+            <LanguageProvider>
+                <div className="App">
+                    <Header />
+                    <main>
+                        <Switch>
+                            <Route exact path="/">
+                                <MainMenu/>
+                            </Route>
+                            <Route path="/board/:id(\d+)">
+                                <BoardHolder />
+                            </Route>
+                        </Switch>
+                    </main>
+                    <Footer />
+                </div>
+            </LanguageProvider>
+        </Router>
     );
 }
 

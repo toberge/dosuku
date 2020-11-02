@@ -1,4 +1,9 @@
 {
   "checkBoardButton": "Sjekk",
-  "description": "Rett og slett sudoku"
+  "description": "Rett og slett sudoku",
+  "copyrightNotice": "Copyright © 2020 Tore Bergebakken – Noen rettigheter forbeholdt.",
+  "difficultyEasy": "Lett",
+  "difficultyMedium": "Middels",
+  "difficultyHard": "Vanskelig",
+  "goBack": "Tilbake"
 }

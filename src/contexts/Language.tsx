@@ -13,7 +13,6 @@ export function LanguageProvider({ children }: PropsWithChildren<{}>) {
 
     const provider = {
         language,
-        // @ts-ignore (because it works...)
         dictionary: dictionaries[language],
         languageChange: (id: string) => {
             const newLanguage = id in languageNames ? id : 'en';

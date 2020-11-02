@@ -1,9 +1,6 @@
-import React, { useContext } from 'react';
-import LanguagePicker from './settings/LanguagePicker';
-import { LanguageContext } from '../contexts/Language';
+import React from 'react';
 
 export default function Footer() {
-    const { dictionary } = useContext(LanguageContext);
 
     return (
         <footer>

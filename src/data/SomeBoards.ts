@@ -2,6 +2,8 @@
  * Easiest no. 1 from
  * https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html
  */
+import { Board } from './Board';
+
 export const solvedBoard = [
     [4,3,5,2,6,9,7,8,1],
     [6,8,2,5,7,1,4,9,3],
@@ -28,3 +30,13 @@ export const unsolvedBoard = [
     [0,4,0,0,5,0,0,3,6],
     [7,0,3,0,1,8,0,0,0]
 ];
+
+export const puzzles: Record<string, Board> = {
+    1: unsolvedBoard,
+    2: solvedBoard
+};
+
+// export const puzzles = new Map([
+//     ['1', unsolvedBoard],
+//     ['2', solvedBoard]
+// ]);

@@ -1,4 +1,9 @@
 {
   "checkBoardButton": "Check",
-  "description": "Please don't commit sudoku"
+  "description": "Please don't commit sudoku",
+  "copyrightNotice": "Copyright © 2020 Tore Bergebakken - Some rights reserved.",
+  "difficultyEasy": "Easy",
+  "difficultyMedium": "Medium",
+  "difficultyHard": "Hard",
+  "goBack": "Back"
 }

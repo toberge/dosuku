@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { N, M, isSolved, getNonzero, Board, EMPTY_BOARD } from '../../data/Board';
+import { N, M, isSolved, getNonzero, EMPTY_BOARD } from '../../data/Board';
 import './BoardHolder.css';
 import _ from 'lodash';
 import { LanguageContext } from '../../contexts/Language';
+import { Link, useParams } from 'react-router-dom';
+import { puzzles, unsolvedBoard } from '../../data/SomeBoards';
 
 // Setting class name...
 function rowBorder(i: number) {
@@ -37,14 +39,17 @@ function Cell({
     );
 }
 
-export default function BoardHolder({
-    originalBoard
-}: {
-    originalBoard: Board;
-}) {
+export default function BoardHolder() {
+    const { id } = useParams<{ id: string }>();
+    const [originalBoard, setOriginalBoard] = useState(EMPTY_BOARD); // set in useEffect
     const [board, setBoard] = useState(EMPTY_BOARD); // set in useEffect
     const [blocked, setBlocked] = useState(new Set());
     const { dictionary } = useContext(LanguageContext);
+
+    useEffect(() => {
+        // Fetch the board by id
+        setOriginalBoard(puzzles[id] || unsolvedBoard);
+    }, [id]);
 
     useEffect(() => {
         // TODO: there should be a better way to do this...
@@ -73,6 +78,7 @@ export default function BoardHolder({
                 </tbody>
             </table>
             <p>
+                <Link to="/"><button>{dictionary.goBack}</button></Link>
                 <button onClick={checkBoard}>{dictionary.checkBoardButton}</button>
             </p>
         </>
