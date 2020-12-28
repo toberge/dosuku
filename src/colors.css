@@ -7,3 +7,27 @@
   --btn-active-accent: #69bdce;
   --bg-color: #f4f4f4;
 }
+
+/* Mobile */
+@media (max-width: 499px) {
+  :root {
+    --table-padding: 0.15em;
+    --btn-size: 2em;
+    --btn-padding: 0.3em;
+    --btn-text-normal: 1em;
+    --btn-text-small: 0.5em;
+    --btn-text-tiny: 0.3em;
+  }
+}
+
+/* Desktop */
+@media (min-width: 500px) {
+  :root {
+    --table-padding: 0.25em;
+    --btn-size: 3em;
+    --btn-padding: 0.4em;
+    --btn-text-normal: 1.2em;
+    --btn-text-small: 0.8em;
+    --btn-text-tiny: 0.5em;
+  }
+}

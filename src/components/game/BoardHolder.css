@@ -24,19 +24,19 @@ tbody {
 
 tr, td {
   margin: 0;
-  padding: 0.25em;
+  padding: var(--table-padding);
   border: inherit; /* disabled by default */
 }
 
 .cell-btn {
   background: var(--btn-color);
-  padding: 0.4em;
-  width: 3em;
-  height: 3em;
+  padding: var(--btn-padding);
+  width: var(--btn-size);
+  height: var(--btn-size);
   border: none;
   border-radius: 0.5em;
   margin: 0.2em;
-    text-align: center;
+  text-align: center;
 }
 
 .cell-btn:disabled {
@@ -63,7 +63,7 @@ tr, td {
 
 .cell-num-small {
   background-color: inherit;
-  font-size: 0.8em;
+  font-size: var(--btn-text-small);
   font-weight: 500;
 }
 .cell-grid-tiny {
@@ -76,6 +76,6 @@ tr, td {
 
 .cell-num-tiny {
   background-color: inherit;
-  font-size: 0.5em;
+  font-size: var(--btn-text-tiny);
   font-weight: 600;
 }
