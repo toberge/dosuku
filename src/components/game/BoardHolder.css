@@ -41,6 +41,7 @@ tr, td {
 
 .cell-btn:disabled {
   background: var(--btn-disabled-color);
+  color: var(--btn-disabled-fg);
 }
 
 .cell-btn.active {
