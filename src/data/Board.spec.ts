@@ -1,4 +1,4 @@
-import { EMPTY_BOARD, fromTiles, getNonzero, getSquare, isSolved, toTiles } from './Board';
+import { EMPTY_BOARD, fromTiles, getNonzero, getSquare, isFilled, isSolved, toTiles } from './Board';
 import { solvedBoard, unsolvedBoard } from './SomeBoards';
 import _ from 'lodash';
 
@@ -70,5 +70,19 @@ describe('toBoard', () => {
                 row.map((cell, j) => boardAgain[i][j] === cell)
             )
         ).toBeTruthy();
+    });
+});
+
+describe('isFilled', () => {
+    it('should return true if a board is properly filled', () => {
+        expect(isFilled(toTiles(solvedBoard))).toBeTruthy();
+    });
+    it('should return false if a board is NOT filled in', () => {
+        expect(isFilled(toTiles(unsolvedBoard))).toBeFalsy();
+    });
+    it('should return false if more than one number is selected in any cell', () => {
+        const board = toTiles(solvedBoard);
+        board[2][3].numbers = [1, 2, 3]
+        expect(isFilled(board)).toBeFalsy();
     });
 });

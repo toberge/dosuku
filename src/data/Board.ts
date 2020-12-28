@@ -5,20 +5,32 @@ export type Board = number[][];
 export type Tile = {
     numbers: number[];
     disabled: boolean;
-}
+};
 
 export type TileBoard = Tile[][];
 
-export function fromTiles (tiles: TileBoard): Board {
-    return tiles.map(row => row.map(tile => tile.numbers.length === 1 ? tile.numbers[0] : 0));
+export function fromTiles(tiles: TileBoard): Board {
+    return tiles.map((row) =>
+        row.map((tile) => (tile.numbers.length === 1 ? tile.numbers[0] : 0))
+    );
 }
 
-export function toTiles (board: Board): TileBoard {
-    return board.map(row => row.map(number => ({
-        numbers: number !== 0 ? [number] : [],
-        disabled: number !== 0
-    })));
+export function toTiles(board: Board): TileBoard {
+    return board.map((row) =>
+        row.map((number) => ({
+            numbers: number !== 0 ? [number] : [],
+            disabled: number !== 0,
+        }))
+    );
 }
+
+export const isFilled = (board: TileBoard) =>
+    board.reduce(
+        (acc, row) =>
+            acc &&
+            row.reduce((acc, tile) => acc && tile.numbers.length === 1, true),
+        true
+    );
 
 export const EMPTY_BOARD: Board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -29,15 +41,14 @@ export const EMPTY_BOARD: Board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
 export const N = 9; // must be divisible by three
 export const M = 3; // the box sizes
 
 function* genRange(n: number) {
-    for (let i = 1; i <= n; i++)
-        yield i;
+    for (let i = 1; i <= n; i++) yield i;
 }
 
 const nums = new Set(genRange(N));
@@ -50,8 +61,7 @@ export const NUMBERS = Array.from(genRange(N));
  * @param board board to fetch from
  */
 export function* getColumn(i: number, board: Board) {
-    for (const row of board)
-        yield row[i];
+    for (const row of board) yield row[i];
 }
 
 /**
@@ -76,9 +86,7 @@ export function* getSquare(i: number, j: number, board: Board) {
  */
 export function* getNonzero(board: Board) {
     for (let i = 0; i < N; i++)
-        for (let j = 0; j < N; j++)
-            if (board[i][j] !== 0)
-                yield `${i} ${j}`;
+        for (let j = 0; j < N; j++) if (board[i][j] !== 0) yield `${i} ${j}`;
 }
 
 /**
@@ -87,8 +95,7 @@ export function* getNonzero(board: Board) {
  */
 export function hasAllNums(xs: number[]) {
     const foundNums = _.clone(nums);
-    for (const x of xs)
-        foundNums.delete(x);
+    for (const x of xs) foundNums.delete(x);
     return foundNums.size === 0;
 }
 

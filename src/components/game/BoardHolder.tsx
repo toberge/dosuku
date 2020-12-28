@@ -7,7 +7,7 @@ import {
     Tile,
     toTiles,
     fromTiles,
-    NUMBERS,
+    NUMBERS, isFilled
 } from '../../data/Board';
 import './BoardHolder.css';
 import _ from 'lodash';
@@ -176,7 +176,9 @@ export default function BoardHolder() {
     }
 
     function checkBoard() {
-        if (isSolved(fromTiles(board))) {
+        if (!isFilled(board)) {
+            alert('Not filled in!');
+        } else if (isSolved(fromTiles(board))) {
             alert('Hooray!');
         } else {
             alert('Nay.');
