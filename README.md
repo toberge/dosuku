@@ -1,6 +1,6 @@
-# kudosu
+# dosuku
 
-Simple sudoku game made with React.
+Simple sudoku game made with React
 
 # Features
 

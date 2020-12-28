@@ -1,6 +1,6 @@
 {
   "short_name": "dosuku",
-  "name": "Sudoku Thing",
+  "name": "Simple Sudoku Game",
   "icons": [
     {
       "src": "favicon.ico",
