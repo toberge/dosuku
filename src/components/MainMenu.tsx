@@ -10,17 +10,17 @@ export default function MainMenu() {
         <>
             <p>
                 <Link to="/board/easy">
-                    <button>{dictionary.difficultyEasy}</button>
+                    <button className="btn-wide">{dictionary.difficultyEasy}</button>
                 </Link>
             </p>
             <p>
                 <Link to="/board/medium">
-                    <button>{dictionary.difficultyMedium}</button>
+                    <button className="btn-wide">{dictionary.difficultyMedium}</button>
                 </Link>
             </p>
             <p>
                 <Link to="/board/hard">
-                    <button>{dictionary.difficultyHard}</button>
+                    <button className="btn-wide">{dictionary.difficultyHard}</button>
                 </Link>
             </p>
             <p>

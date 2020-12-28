@@ -50,6 +50,10 @@ button {
     padding: calc(var(--btn-padding) * 0.5) calc(var(--btn-padding) * 2);
 }
 
+.btn-wide {
+    min-width: 13em;
+}
+
 button:hover {
     background: var(--btn-hover-bg);
 }
