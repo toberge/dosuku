@@ -19,40 +19,20 @@ table {
   border-spacing: 0;
 }
 
-tbody {
-}
-
 tr, td {
   margin: 0;
   padding: var(--table-padding);
   border: inherit; /* disabled by default */
 }
 
+/* Modified cell buttons – fixed-size! */
 .cell-btn {
-  background: var(--btn-color);
   padding: var(--btn-padding);
   width: var(--btn-size);
   height: var(--btn-size);
-  border: none;
-  border-radius: 0.5em;
-  margin: 0.2em;
-  text-align: center;
 }
 
-.cell-btn:disabled {
-  background: var(--btn-disabled-color);
-  color: var(--btn-disabled-fg);
-}
-
-.cell-btn.active {
-  background: var(--btn-active-color);
-}
-
-.cell-btn.active:hover {
-  background: var(--btn-active-accent);
-
-}
-
+/* Grid with extra numbers */
 .cell-grid-small {
   display: grid;
   grid-template-columns: 1fr 1fr;

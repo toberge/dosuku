@@ -37,3 +37,33 @@ main,
 footer {
     /*flex-shrink: 0;*/
 }
+
+/* Buttons! */
+button {
+    background: var(--btn-bg);
+    border: none;
+    border-radius: 0.5em;
+    margin: 0.2em;
+    text-align: center;
+
+    height: var(--btn-size);
+    padding: calc(var(--btn-padding) * 0.5) calc(var(--btn-padding) * 2);
+}
+
+button:hover {
+    background: var(--btn-hover-bg);
+}
+
+button:disabled {
+    background: var(--btn-disabled-bg);
+    color: var(--btn-disabled-fg);
+}
+
+button.active {
+    background: var(--btn-active-bg);
+}
+
+button.active:hover {
+    background: var(--btn-active-hover-bg);
+
+}

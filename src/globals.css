@@ -1,10 +1,11 @@
 :root {
   --border-color: #383838;
-  --btn-color: #e7e6e6;
-  --btn-disabled-color: #d2d2d2;
+  --btn-bg: #e7e6e6;
+  --btn-hover-bg: #d7d7d7;
+  --btn-disabled-bg: #d2d2d2;
   --btn-disabled-fg: #5a5959;
-  --btn-active-color: #81d3e7;
-  --btn-active-accent: #69bdce;
+  --btn-active-bg: #81d3e7;
+  --btn-active-hover-bg: #69bdce;
   --bg-color: #f4f4f4;
 }
 
