@@ -19,6 +19,7 @@ Give it a try [here](https://toberge.github.io/dosuku/)!
 - [x] Different boards
   - Taken from [here](https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html)
 - [x] Language setting, of course
+- [x] Keyboard shortcuts (1-9, Enter)
 - [ ] Anything else that is missing
 
 # Resources used

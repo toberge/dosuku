@@ -16,6 +16,8 @@ import { LanguageContext } from '../../contexts/Language';
 import { Link, useParams } from 'react-router-dom';
 import { puzzles, unsolvedBoard } from '../../data/SomeBoards';
 import Modal, { Styles } from 'react-modal';
+// @ts-ignore
+import KeyboardEventHandler from 'react-keyboard-event-handler';
 
 // THIS is important
 Modal.setAppElement('#root');
@@ -63,7 +65,7 @@ function Cell({
         inside = (
             <div className="cell-grid-tiny">
                 {tile.numbers.map((x) => (
-                    <div className="cell-num-tiny">{x}</div>
+                    <div key={x} className="cell-num-tiny">{x}</div>
                 ))}
             </div>
         );
@@ -71,7 +73,7 @@ function Cell({
         inside = (
             <div className="cell-grid-small">
                 {tile.numbers.map((x) => (
-                    <div className="cell-num-small">{x}</div>
+                    <div key={x} className="cell-num-small">{x}</div>
                 ))}
             </div>
         );
@@ -96,7 +98,7 @@ export default function BoardHolder() {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [message, setMessage] = useState('');
-    const [isError, setisError] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     const [originalBoard, setOriginalBoard] = useState(EMPTY_BOARD); // set in useEffect
     const [board, setBoard] = useState(toTiles(EMPTY_BOARD)); // set in useEffect
@@ -107,7 +109,6 @@ export default function BoardHolder() {
 
     useEffect(() => {
         // Fetch the board by id
-        console.log(id);
         if (puzzles[id])
             // Pick a random board of that difficulty/whatever
             setOriginalBoard(_.sample(puzzles[id]) || unsolvedBoard);
@@ -120,7 +121,10 @@ export default function BoardHolder() {
     }, [originalBoard]);
 
     return (
-        <>
+        <KeyboardEventHandler
+            handleKeys={['enter', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
+            onKeyEvent={handleKeyPress}
+        >
             <table>
                 <tbody>
                     {board.map((row, i) => (
@@ -144,18 +148,18 @@ export default function BoardHolder() {
                         const tile = board[selectedTile[0]][selectedTile[1]];
                         return (
                             <button
-                                type="button"
                                 className={`cell-btn ${
                                     tile.numbers.includes(num) ? ' active' : ''
                                 }`}
                                 onClick={() => toggleNumber(num)}
+                                key={num}
                             >
                                 {num}
                             </button>
                         );
                     } else {
                         return (
-                            <button type="button" className="cell-btn" disabled>
+                            <button key={num} className="cell-btn" disabled>
                                 {num}
                             </button>
                         );
@@ -178,8 +182,18 @@ export default function BoardHolder() {
                     <button onClick={() => setModalIsOpen(false)}>Ok</button>
                 </p>
             </Modal>
-        </>
+        </KeyboardEventHandler>
     );
+
+    function handleKeyPress(key: string) {
+        if (key === 'enter' && !modalIsOpen) {
+            // No shortcut for closing the modal yet
+            // (the key handler does not work when the modal is open)
+            checkBoard();
+        } else {
+            toggleNumber(parseInt(key));
+        }
+    }
 
     function toggleNumber(x: number) {
         if (!selectedTile) return;
@@ -208,7 +222,7 @@ export default function BoardHolder() {
 
     function openModal(message: string, error = true) {
         setMessage(message);
-        setisError(error);
+        setIsError(error);
         setModalIsOpen(true);
     }
 
