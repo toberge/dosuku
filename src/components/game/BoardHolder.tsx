@@ -78,7 +78,7 @@ function Cell({
     } else if (numbers.length > 0) {
         inside = numbers[0];
     } else {
-        inside = '-';
+        inside = '';
     }
     return (
         <button
