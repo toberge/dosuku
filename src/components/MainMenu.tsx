@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LanguagePicker from './settings/LanguagePicker';
 import { LanguageContext } from '../contexts/Language';
 

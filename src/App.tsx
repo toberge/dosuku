@@ -1,8 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import BoardHolder from './components/game/BoardHolder';
-import { unsolvedBoard } from './data/SomeBoards';
 import { LanguageProvider } from './contexts/Language';
 import Header from './components/Header';
 import Footer from './components/Footer';

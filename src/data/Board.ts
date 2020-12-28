@@ -42,6 +42,8 @@ function* genRange(n: number) {
 
 const nums = new Set(genRange(N));
 
+export const NUMBERS = Array.from(genRange(N));
+
 /**
  * Get the numbers in column
  * @param i column index, from 0..M-1

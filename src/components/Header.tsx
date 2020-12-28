@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import LanguagePicker from './settings/LanguagePicker';
 import { LanguageContext } from '../contexts/Language';
 
 export default function Header() {
