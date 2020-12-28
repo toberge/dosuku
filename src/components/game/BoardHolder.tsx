@@ -7,13 +7,30 @@ import {
     Tile,
     toTiles,
     fromTiles,
-    NUMBERS, isFilled
+    NUMBERS,
+    isFilled,
 } from '../../data/Board';
 import './BoardHolder.css';
 import _ from 'lodash';
 import { LanguageContext } from '../../contexts/Language';
 import { Link, useParams } from 'react-router-dom';
 import { puzzles, unsolvedBoard } from '../../data/SomeBoards';
+import Modal, { Styles } from 'react-modal';
+
+// THIS is important
+Modal.setAppElement('#root');
+
+const modalStyle: Styles = {
+    content: {
+        minWidth: '15em',
+        width: '30em',
+        height: '10em',
+        textAlign: 'center',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
 
 // Setting class name...
 function rowBorder(i: number) {
@@ -40,8 +57,7 @@ function Cell({
     onClick: () => void;
     selected: boolean;
 }) {
-    // Note: This component can hold independent state
-    const {numbers} = tile;
+    const { numbers } = tile;
     let inside;
     if (numbers.length > 4) {
         inside = (
@@ -50,7 +66,7 @@ function Cell({
                     <div className="cell-num-tiny">{x}</div>
                 ))}
             </div>
-        )
+        );
     } else if (numbers.length > 1) {
         inside = (
             <div className="cell-grid-small">
@@ -58,7 +74,7 @@ function Cell({
                     <div className="cell-num-small">{x}</div>
                 ))}
             </div>
-        )
+        );
     } else if (numbers.length > 0) {
         inside = numbers[0];
     } else {
@@ -66,7 +82,7 @@ function Cell({
     }
     return (
         <button
-            className={'cell-btn' + (selected ? ' active' : '')}
+            className={`cell-btn ${selected ? 'active' : ''}`}
             onClick={onClick}
             disabled={tile.disabled}
         >
@@ -77,6 +93,11 @@ function Cell({
 
 export default function BoardHolder() {
     const { id } = useParams<{ id: string }>();
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [message, setMessage] = useState('');
+    const [isError, setisError] = useState(false);
+
     const [originalBoard, setOriginalBoard] = useState(EMPTY_BOARD); // set in useEffect
     const [board, setBoard] = useState(toTiles(EMPTY_BOARD)); // set in useEffect
     const [selectedTile, setSelectedTile] = useState<[number, number] | null>(
@@ -86,12 +107,11 @@ export default function BoardHolder() {
 
     useEffect(() => {
         // Fetch the board by id
-        console.log(id)
+        console.log(id);
         if (puzzles[id])
             // Pick a random board of that difficulty/whatever
             setOriginalBoard(_.sample(puzzles[id]) || unsolvedBoard);
-        else
-            setOriginalBoard(unsolvedBoard);
+        else setOriginalBoard(unsolvedBoard);
     }, [id]);
 
     useEffect(() => {
@@ -125,10 +145,9 @@ export default function BoardHolder() {
                         return (
                             <button
                                 type="button"
-                                className={
-                                    'cell-btn' +
-                                    (tile.numbers.includes(num) ? ' active' : '')
-                                }
+                                className={`cell-btn ${
+                                    tile.numbers.includes(num) ? ' active' : ''
+                                }`}
                                 onClick={() => toggleNumber(num)}
                             >
                                 {num}
@@ -151,18 +170,30 @@ export default function BoardHolder() {
                     {dictionary.checkBoardButton}
                 </button>
             </p>
+            <Modal isOpen={modalIsOpen} style={modalStyle}>
+                <p className={`message ${isError ? ' error' : ''}`}>
+                    {message}
+                </p>
+                <p>
+                    <button onClick={() => setModalIsOpen(false)}>Ok</button>
+                </p>
+            </Modal>
         </>
     );
 
     function toggleNumber(x: number) {
         if (!selectedTile) return;
         const [i, j] = selectedTile;
-        const {numbers} = board[i][j]
+        const { numbers } = board[i][j];
         const newBoard = _.clone(board);
         if (numbers.includes(x)) {
-            newBoard[i][j].numbers = NUMBERS.filter(y => numbers.includes(y) && y !== x);
+            newBoard[i][j].numbers = NUMBERS.filter(
+                (y) => numbers.includes(y) && y !== x
+            );
         } else {
-            newBoard[i][j].numbers = NUMBERS.filter(y => numbers.includes(y) || y === x);
+            newBoard[i][j].numbers = NUMBERS.filter(
+                (y) => numbers.includes(y) || y === x
+            );
         }
         setBoard(newBoard);
     }
@@ -175,13 +206,19 @@ export default function BoardHolder() {
         );
     }
 
+    function openModal(message: string, error = true) {
+        setMessage(message);
+        setisError(error);
+        setModalIsOpen(true);
+    }
+
     function checkBoard() {
         if (!isFilled(board)) {
-            alert('Not filled in!');
+            openModal(dictionary.notFilledMessage);
         } else if (isSolved(fromTiles(board))) {
-            alert('Hooray!');
+            openModal(dictionary.winMessage, false);
         } else {
-            alert('Nay.');
+            openModal(dictionary.lossMessage);
         }
     }
 }

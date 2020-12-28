@@ -5,5 +5,8 @@
   "difficultyEasy": "Easy",
   "difficultyMedium": "Medium",
   "difficultyHard": "Hard",
+  "notFilledMessage": "The board is not filled in!",
+  "winMessage": "Congratulations! You solved it!",
+  "lossMessage": "Nay. This is wrong.",
   "goBack": "Back"
 }

@@ -25,6 +25,14 @@ tr, td {
   border: inherit; /* disabled by default */
 }
 
+.message {
+  font-size: 2em;
+}
+
+.error {
+  color: darkred;
+}
+
 /* Modified cell buttons – fixed-size! */
 .cell-btn {
   padding: var(--btn-padding);

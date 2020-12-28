@@ -3,6 +3,7 @@
  * https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html
  */
 import { Board } from './Board';
+import _ from 'lodash';
 
 export const solvedBoard = [
     [4,3,5,2,6,9,7,8,1],
@@ -100,6 +101,9 @@ const hard2 = [
     [0, 0, 0, 0, 0, 1, 0, 0, 2]
 ];
 
+const wrongBoard = _.cloneDeep(solvedBoard);
+wrongBoard[2][3] = 1;
+
 export const puzzles: Record<string, Board[]> = {
     'easy': [
         unsolvedBoard,
@@ -111,5 +115,11 @@ export const puzzles: Record<string, Board[]> = {
     'hard': [
         hard1,
         hard2
+    ],
+    'cheat': [
+        solvedBoard
+    ],
+    'wrong': [
+        wrongBoard
     ]
 }

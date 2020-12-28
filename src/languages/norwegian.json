@@ -5,5 +5,8 @@
   "difficultyEasy": "Lett",
   "difficultyMedium": "Middels",
   "difficultyHard": "Vanskelig",
+  "notFilledMessage": "Du har ikke fylt ut brettet!",
+  "winMessage": "Gratulerer med seieren, kompis!",
+  "lossMessage": "Beklager, dette er ikke helt rett.",
   "goBack": "Tilbake"
 }
