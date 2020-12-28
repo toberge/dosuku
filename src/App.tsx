@@ -18,7 +18,7 @@ function App() {
                             <Route exact path="/">
                                 <MainMenu/>
                             </Route>
-                            <Route path="/board/:id(\d+)">
+                            <Route path="/board/:id">
                                 <BoardHolder />
                             </Route>
                         </Switch>

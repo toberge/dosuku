@@ -9,17 +9,17 @@ export default function MainMenu() {
     return (
         <>
             <p>
-                <Link to="/board/1">
+                <Link to="/board/easy">
                     <button>{dictionary.difficultyEasy}</button>
                 </Link>
             </p>
             <p>
-                <Link to="/board/1">
+                <Link to="/board/medium">
                     <button>{dictionary.difficultyMedium}</button>
                 </Link>
             </p>
             <p>
-                <Link to="/board/1">
+                <Link to="/board/hard">
                     <button>{dictionary.difficultyHard}</button>
                 </Link>
             </p>

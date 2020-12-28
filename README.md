@@ -7,9 +7,13 @@ Simple sudoku game made with React.
 - [x] Sudoku board
 - [x] Solution check
 - [x] Editable number tiles
+  - With the ability to select multiple numbers  
+    (in case the player is unsure about what number fits in a tile)
 - [x] Blocked puzzle-preset tiles
-- [ ] Marked tiles
-- [ ] Different boards
+- [x] Marked tiles
+  - Implemented as _multiple numbers selected_ for a tile
+- [x] Different boards
+  - Taken from [here](https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html)
 - [x] Language setting, of course
 - [ ] Anything else that is missing
 

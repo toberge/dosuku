@@ -86,7 +86,12 @@ export default function BoardHolder() {
 
     useEffect(() => {
         // Fetch the board by id
-        setOriginalBoard(puzzles[id] || unsolvedBoard);
+        console.log(id)
+        if (puzzles[id])
+            // Pick a random board of that difficulty/whatever
+            setOriginalBoard(_.sample(puzzles[id]) || unsolvedBoard);
+        else
+            setOriginalBoard(unsolvedBoard);
     }, [id]);
 
     useEffect(() => {
