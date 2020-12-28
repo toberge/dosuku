@@ -1,4 +1,4 @@
-import { EMPTY_BOARD, getNonzero, getSquare, isSolved } from './Board';
+import { EMPTY_BOARD, fromTiles, getNonzero, getSquare, isSolved, toTiles } from './Board';
 import { solvedBoard, unsolvedBoard } from './SomeBoards';
 import _ from 'lodash';
 
@@ -11,7 +11,7 @@ describe('getSquare', () => {
             }
         }
         expect(
-            Array.from(getSquare(1, 0, board)).every(x => x === 4)
+            Array.from(getSquare(1, 0, board)).every((x) => x === 4)
         ).toBeTruthy();
     });
 });
@@ -42,5 +42,33 @@ describe('getNonzero', () => {
         board[6][8] = 4;
         board[7][5] = 4;
         expect(Array.from(getNonzero(board)).length).toBe(4);
-    })
+    });
+});
+
+describe('toTiles', () => {
+    it('should translate a Board to a TileBoard', () => {
+        const board = _.cloneDeep(unsolvedBoard);
+        const tiles = toTiles(board);
+        expect(
+            board.map((row, i) =>
+                row.map(
+                    (cell, j) =>
+                        tiles[i][j].disabled === (cell !== 0) &&
+                        tiles[i][j].numbers.length === (cell !== 0 ? 1 : 0)
+                )
+            )
+        ).toBeTruthy();
+    });
+});
+
+describe('toBoard', () => {
+    it('should translate a Board to a TileBoard', () => {
+        const board = _.cloneDeep(unsolvedBoard);
+        const boardAgain = fromTiles(toTiles(board));
+        expect(
+            board.map((row, i) =>
+                row.map((cell, j) => boardAgain[i][j] === cell)
+            )
+        ).toBeTruthy();
+    });
 });

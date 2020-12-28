@@ -2,6 +2,24 @@ import _ from 'lodash';
 
 export type Board = number[][];
 
+export type Tile = {
+    numbers: number[];
+    disabled: boolean;
+}
+
+export type TileBoard = Tile[][];
+
+export function fromTiles (tiles: TileBoard): Board {
+    return tiles.map(row => row.map(tile => tile.numbers.length === 1 ? tile.numbers[0] : 0));
+}
+
+export function toTiles (board: Board): TileBoard {
+    return board.map(row => row.map(number => ({
+        numbers: number !== 0 ? [number] : [],
+        disabled: number !== 0
+    })));
+}
+
 export const EMPTY_BOARD: Board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
