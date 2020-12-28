@@ -4,6 +4,8 @@ Simple sudoku game made with React
 
 Give it a try [here](https://toberge.github.io/dosuku/)!
 
+![Demo picture: Sudoku game in progress](res/demo.png)
+
 # Features
 
 - [x] Sudoku board
