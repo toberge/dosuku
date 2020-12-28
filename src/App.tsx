@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import BoardHolder from './components/game/BoardHolder';
 import { LanguageProvider } from './contexts/Language';
@@ -20,6 +20,9 @@ function App() {
                             </Route>
                             <Route path="/board/:id">
                                 <BoardHolder />
+                            </Route>
+                            <Route>
+                                <h2>404 Not Found</h2>
                             </Route>
                         </Switch>
                     </main>
