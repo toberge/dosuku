@@ -20,6 +20,8 @@ Give it a try [here](https://toberge.github.io/dosuku/)!
   - Taken from [here](https://dingo.sbs.arizona.edu/~sandiway/sudoku/examples.html)
 - [x] Language setting, of course
 - [x] Keyboard shortcuts (1-9, Enter)
+- [x] Marking for which row, column and box holds the selected tile
+  - Make it toggleable?
 - [ ] Anything else that is missing
 
 # Resources used

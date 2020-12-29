@@ -49,11 +49,15 @@ footer {
 }
 
 button {
+    box-sizing: border-box;
+
     background: var(--btn-bg);
     border: none;
     border-radius: 0.5em;
     margin: 0.2em;
     text-align: center;
+
+    font-size: var(--btn-text-normal);
 
     height: var(--btn-size);
     padding: calc(var(--btn-padding) * 0.5) calc(var(--btn-padding) * 2);
@@ -65,6 +69,10 @@ button {
 
 button:hover {
     background: var(--btn-hover-bg);
+}
+
+button:focus {
+    border: var(--btn-border-size) solid var(--border-color);
 }
 
 button:disabled {

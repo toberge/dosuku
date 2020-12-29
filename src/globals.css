@@ -1,11 +1,12 @@
 :root {
-  --border-color: #383838;
+  --border-color: #444;
+  --selected-area-bg: #d2d2d2;
   --btn-bg: #e7e6e6;
   --btn-hover-bg: #d7d7d7;
-  --btn-disabled-bg: #d2d2d2;
+  --btn-disabled-bg: #d9d9d9;
   --btn-disabled-fg: #5a5959;
   --btn-active-bg: #81d3e7;
-  --btn-active-hover-bg: #69bdce;
+  --btn-active-hover-bg: #71c7d9;
   --bg-color: #f4f4f4;
 }
 
@@ -14,8 +15,9 @@
   :root {
     --table-padding: 0.15em;
     --btn-size: 2em;
+    --btn-border-size: 0.1em;
     --btn-padding: 0.3em;
-    --btn-text-normal: 1em;
+    --btn-text-normal: 0.85em;
     --btn-text-small: 0.5em;
     --btn-text-tiny: 0.3em;
   }
@@ -26,8 +28,9 @@
   :root {
     --table-padding: 0.25em;
     --btn-size: 3em;
+    --btn-border-size: 0.15em;
     --btn-padding: 0.4em;
-    --btn-text-normal: 1.2em;
+    --btn-text-normal: 1em;
     --btn-text-small: 0.8em;
     --btn-text-tiny: 0.5em;
   }

@@ -1,3 +1,5 @@
+/* Borders marking 3x3 boxes */
+
 .border-right {
   border-right: solid 1px var(--border-color);
 }
@@ -15,6 +17,8 @@
   border-top: solid 1px var(--border-color);
 }
 
+/* General table style */
+
 table {
   border-spacing: 0;
 }
@@ -25,6 +29,34 @@ tr, td {
   border: inherit; /* disabled by default */
 }
 
+/* Color adjustments for the selected area (col, row, box of selected number) */
+
+.selected-area {
+  background-color: var(--selected-area-bg);
+}
+
+.selected-area button {
+  background-color: var(--bg-color);
+}
+
+.selected-area button:disabled {
+  background-color: var(--btn-bg);
+}
+
+.selected-area button:hover, .selected-area button:focus {
+  background-color: var(--btn-bg);
+}
+
+.selected-area button.active {
+  background-color: var(--btn-active-bg);
+}
+
+.selected-area button.active:hover {
+  background-color: var(--btn-active-hover-bg);
+}
+
+/* Modal styling */
+
 .message {
   font-size: 2em;
 }
@@ -34,6 +66,7 @@ tr, td {
 }
 
 /* Modified cell buttons – fixed-size! */
+
 .cell-btn {
   padding: var(--btn-padding);
   width: var(--btn-size);
@@ -54,6 +87,7 @@ tr, td {
   font-size: var(--btn-text-small);
   font-weight: 500;
 }
+
 .cell-grid-tiny {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

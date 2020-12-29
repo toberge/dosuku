@@ -65,7 +65,9 @@ function Cell({
         inside = (
             <div className="cell-grid-tiny">
                 {tile.numbers.map((x) => (
-                    <div key={x} className="cell-num-tiny">{x}</div>
+                    <div key={x} className="cell-num-tiny">
+                        {x}
+                    </div>
                 ))}
             </div>
         );
@@ -73,7 +75,9 @@ function Cell({
         inside = (
             <div className="cell-grid-small">
                 {tile.numbers.map((x) => (
-                    <div key={x} className="cell-num-small">{x}</div>
+                    <div key={x} className="cell-num-small">
+                        {x}
+                    </div>
                 ))}
             </div>
         );
@@ -102,9 +106,12 @@ export default function BoardHolder() {
 
     const [originalBoard, setOriginalBoard] = useState(EMPTY_BOARD); // set in useEffect
     const [board, setBoard] = useState(toTiles(EMPTY_BOARD)); // set in useEffect
-    const [selectedTile, setSelectedTile] = useState<[number, number] | null>(
-        null
-    );
+    const [selectedTile, setSelectedTile] = useState<[number, number]>([
+        -1,
+        -1,
+    ]);
+    const [selectedRow, selectedCol] = selectedTile;
+
     const { dictionary } = useContext(LanguageContext);
 
     useEffect(() => {
@@ -130,7 +137,7 @@ export default function BoardHolder() {
                     {board.map((row, i) => (
                         <tr key={i} className={rowBorder(i)}>
                             {row.map((cell, j) => (
-                                <td key={j} className={colBorder(j)}>
+                                <td key={j} className={cellClass(i, j)}>
                                     <Cell
                                         tile={cell}
                                         onClick={() => setSelectedTile([i, j])}
@@ -144,8 +151,8 @@ export default function BoardHolder() {
             </table>
             <p>
                 {NUMBERS.map((num: number) => {
-                    if (selectedTile) {
-                        const tile = board[selectedTile[0]][selectedTile[1]];
+                    if (selectedCol >= 0 && selectedRow >= 0) {
+                        const tile = board[selectedRow][selectedCol];
                         return (
                             <button
                                 className={`cell-btn ${
@@ -185,6 +192,19 @@ export default function BoardHolder() {
         </KeyboardEventHandler>
     );
 
+    function cellClass(i: number, j: number) {
+        let result = '';
+        if (
+            selectedRow === i ||
+            selectedCol === j ||
+            (Math.floor(selectedRow / M) === Math.floor(i / M) &&
+                Math.floor(selectedCol / M) === Math.floor(j / M))
+        ) {
+            result = ' selected-area';
+        }
+        return colBorder(j) + result;
+    }
+
     function handleKeyPress(key: string) {
         if (key === 'enter' && !modalIsOpen) {
             // No shortcut for closing the modal yet
@@ -196,7 +216,7 @@ export default function BoardHolder() {
     }
 
     function toggleNumber(x: number) {
-        if (!selectedTile) return;
+        if (selectedRow === -1 || selectedCol === -1) return;
         const [i, j] = selectedTile;
         const { numbers } = board[i][j];
         const newBoard = _.clone(board);
@@ -213,11 +233,7 @@ export default function BoardHolder() {
     }
 
     function isSelected(i: number, j: number) {
-        return (
-            selectedTile !== null &&
-            selectedTile[0] === i &&
-            selectedTile[1] === j
-        );
+        return selectedRow === i && selectedCol === j;
     }
 
     function openModal(message: string, error = true) {
