@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/dosuku/static/css/main.296a7f4b.chunk.css",
-    "main.js": "/dosuku/static/js/main.8df28976.chunk.js",
-    "main.js.map": "/dosuku/static/js/main.8df28976.chunk.js.map",
+    "main.css": "/dosuku/static/css/main.4e1ffbdc.chunk.css",
+    "main.js": "/dosuku/static/js/main.95419552.chunk.js",
+    "main.js.map": "/dosuku/static/js/main.95419552.chunk.js.map",
     "runtime-main.js": "/dosuku/static/js/runtime-main.d5d53b51.js",
     "runtime-main.js.map": "/dosuku/static/js/runtime-main.d5d53b51.js.map",
     "static/js/2.d34a5280.chunk.js": "/dosuku/static/js/2.d34a5280.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.b8407871.chunk.js": "/dosuku/static/js/3.b8407871.chunk.js",
     "static/js/3.b8407871.chunk.js.map": "/dosuku/static/js/3.b8407871.chunk.js.map",
     "index.html": "/dosuku/index.html",
-    "static/css/main.296a7f4b.chunk.css.map": "/dosuku/static/css/main.296a7f4b.chunk.css.map",
+    "static/css/main.4e1ffbdc.chunk.css.map": "/dosuku/static/css/main.4e1ffbdc.chunk.css.map",
     "static/js/2.d34a5280.chunk.js.LICENSE.txt": "/dosuku/static/js/2.d34a5280.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d5d53b51.js",
     "static/js/2.d34a5280.chunk.js",
-    "static/css/main.296a7f4b.chunk.css",
-    "static/js/main.8df28976.chunk.js"
+    "static/css/main.4e1ffbdc.chunk.css",
+    "static/js/main.95419552.chunk.js"
   ]
 }
