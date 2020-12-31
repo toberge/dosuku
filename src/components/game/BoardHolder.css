@@ -73,6 +73,22 @@ tr, td {
   height: var(--btn-size);
 }
 
+.cell-btn.wrong {
+  background-color: #e88080;
+}
+
+.cell-btn.wrong:hover {
+  background-color: #e76d6d;
+}
+
+.cell-btn.wrong.active {
+  background-color: #bc76e3;
+}
+
+.cell-btn.wrong.active:hover {
+  background-color: #b65ce7;
+}
+
 /* Grid with extra numbers */
 .cell-grid-small {
   display: grid;

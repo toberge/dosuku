@@ -8,7 +8,7 @@ import {
     toTiles,
     fromTiles,
     NUMBERS,
-    isFilled,
+    isFilled, findErrors, TileBoard, markErrors
 } from '../../data/Board';
 import './BoardHolder.css';
 import _ from 'lodash';
@@ -59,7 +59,7 @@ function Cell({
     onClick: () => void;
     selected: boolean;
 }) {
-    const { numbers } = tile;
+    const { numbers, wrong } = tile;
     let inside;
     if (numbers.length > 4) {
         inside = (
@@ -88,7 +88,7 @@ function Cell({
     }
     return (
         <button
-            className={`cell-btn ${selected ? 'active' : ''}`}
+            className={`cell-btn ${selected ? 'active' : ''} ${wrong ? 'wrong' : ''}`}
             onClick={onClick}
             disabled={tile.disabled}
         >
@@ -229,7 +229,12 @@ export default function BoardHolder() {
                 (y) => numbers.includes(y) || y === x
             );
         }
-        setBoard(newBoard);
+        // if error marking only happens on check, do this:
+        // if (newBoard[i][j].wrong) {
+        //     newBoard[i][j].wrong = false; // don't indicate failure when changed
+        // }
+        // otherwise, continuously mark errors: (make this toggleable?)
+        setBoard(markErrors(newBoard));
     }
 
     function isSelected(i: number, j: number) {
@@ -250,5 +255,7 @@ export default function BoardHolder() {
         } else {
             openModal(dictionary.lossMessage);
         }
+        // if error marking only happens on check:
+        // setBoard(markErrors(board));
     }
 }

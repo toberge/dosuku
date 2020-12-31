@@ -5,6 +5,7 @@ export type Board = number[][];
 export type Tile = {
     numbers: number[];
     disabled: boolean;
+    wrong: boolean;
 };
 
 export type TileBoard = Tile[][];
@@ -20,6 +21,7 @@ export function toTiles(board: Board): TileBoard {
         row.map((number) => ({
             numbers: number !== 0 ? [number] : [],
             disabled: number !== 0,
+            wrong: false
         }))
     );
 }
@@ -120,4 +122,82 @@ export function isSolved(board: Board) {
         }
     }
     return true;
+}
+
+/**
+ * Finds errors (duplicate numbers in col/row/square)
+ * and reports their positions.
+ *
+ * @param board Board to inspect
+ * @return Positions of errors
+ */
+export function findErrors(board: Board): [number, number][] {
+    const errors: [number, number][] = [];
+    // TODO: CLEAN THIS MESS UP!
+    //       Yes, it *is* fast enough, but it is way more verbose than it needs to be
+    //       - and creating a set of positions is not necessary for marking them!
+
+    // Rows
+    board.forEach((row, i) => {
+        const found: Map<number, [number, number][]> = new Map<number, [number, number][]>();
+        row.forEach((x, j) => {
+            if (x === 0) return;
+            if (!found.has(x)) {
+                found.set(x, []);
+            }
+            // @ts-ignore
+            found.get(x).push([i, j])
+        })
+        errors.push(...Array.from(found.values()).filter((xs) => xs.length > 1).flat());
+    })
+
+    // Columns
+    board.forEach((_, j) => {
+        const found: Map<number, [number, number][]> = new Map<number, [number, number][]>();
+        Array.from(getColumn(j, board)).forEach((x, i) => {
+            if (x === 0) return;
+            if (!found.has(x)) {
+                found.set(x, []);
+            }
+            // @ts-ignore
+            found.get(x).push([i, j])
+        })
+        errors.push(...Array.from(found.values()).filter((xs) => xs.length > 1).flat());
+    })
+
+    // Boxes
+    for (let i = 0; i < N / 3; i++) {
+        for (let j = 0; j < N / 3; j++) {
+            const found: Map<number, [number, number][]> = new Map<number, [number, number][]>();
+            Array.from(getSquare(i, j, board)).forEach((x, k) => {
+                if (x === 0) return;
+                if (!found.has(x)) {
+                    found.set(x, []);
+                }
+                // @ts-ignore
+                found.get(x).push([i*M+(Math.floor(k/M)), j*M+(k%M)])
+            })
+            errors.push(...Array.from(found.values()).filter((xs) => xs.length > 1).flat());
+        }
+    }
+
+    // filter unique...
+    return Array.from(new Set(errors).values());
+}
+
+/**
+ * Marks errors (duplicates) on a TileBoard
+ * (consider combining this with the findErrors function)
+ *
+ * @param board TileBoard to mark
+ * @return New board with errors properly marked
+ */
+export function markErrors(board: TileBoard) {
+    const errors = findErrors(fromTiles(board));
+    const newBoard = board.map(row => row.map(tile => ({...tile, wrong: false})));
+    errors.forEach(([i, j]) => {
+        if (!newBoard[i][j].disabled)
+            newBoard[i][j].wrong = true;
+    })
+    return newBoard;
 }
