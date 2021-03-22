@@ -8,5 +8,10 @@
   "notFilledMessage": "Du har ikke fylt ut brettet!",
   "winMessage": "Gratulerer med seieren, kompis!",
   "lossMessage": "Beklager, dette er ikke helt rett.",
-  "goBack": "Tilbake"
+  "goBack": "Tilbake",
+  "settings": "Innstillinger",
+  "hintsLabel": "Når skal feil markeres?",
+  "hints: always": "Alltid",
+  "hints: on check": "Hver gang brettet sjekkes",
+  "hints: none": "Aldri"
 }

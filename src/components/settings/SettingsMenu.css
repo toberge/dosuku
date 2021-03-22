@@ -1,0 +1,11 @@
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  min-width: 50vw;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-row button {
+  min-width: 25%;
+}

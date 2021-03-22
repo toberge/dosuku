@@ -24,6 +24,11 @@ export default function MainMenu() {
                 </Link>
             </p>
             <p>
+                <Link to="/settings">
+                    <button className="btn-wide">{dictionary.settings}</button>
+                </Link>
+            </p>
+            <p>
                 <LanguagePicker />
             </p>
         </>

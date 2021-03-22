@@ -18,6 +18,7 @@ import { puzzles, unsolvedBoard } from '../../data/SomeBoards';
 import Modal, { Styles } from 'react-modal';
 // @ts-ignore
 import KeyboardEventHandler from 'react-keyboard-event-handler';
+import { SettingsContext } from '../../contexts/Settings';
 
 // THIS is important
 Modal.setAppElement('#root');
@@ -113,6 +114,7 @@ export default function BoardHolder() {
     const [selectedRow, selectedCol] = selectedTile;
 
     const { dictionary } = useContext(LanguageContext);
+    const { hints } = useContext(SettingsContext);
 
     useEffect(() => {
         // Fetch the board by id
@@ -220,6 +222,7 @@ export default function BoardHolder() {
         const [i, j] = selectedTile;
         const { numbers } = board[i][j];
         const newBoard = _.clone(board);
+
         if (numbers.includes(x)) {
             newBoard[i][j].numbers = NUMBERS.filter(
                 (y) => numbers.includes(y) && y !== x
@@ -229,12 +232,16 @@ export default function BoardHolder() {
                 (y) => numbers.includes(y) || y === x
             );
         }
-        // if error marking only happens on check, do this:
-        // if (newBoard[i][j].wrong) {
-        //     newBoard[i][j].wrong = false; // don't indicate failure when changed
-        // }
-        // otherwise, continuously mark errors: (make this toggleable?)
-        setBoard(markErrors(newBoard));
+
+        if (hints === "always") {
+            // otherwise, continuously mark errors
+            setBoard(markErrors(newBoard));
+        } else {
+            // if error marking only happens on check,
+            // don't indicate failure when changed
+            newBoard[i][j].wrong = false;
+            setBoard(newBoard);
+        }
     }
 
     function isSelected(i: number, j: number) {
@@ -255,7 +262,8 @@ export default function BoardHolder() {
         } else {
             openModal(dictionary.lossMessage);
         }
-        // if error marking only happens on check:
-        // setBoard(markErrors(board));
+        // if error marking only happens on check
+        if (isError && hints === 'on check')
+            setBoard(markErrors(board));
     }
 }

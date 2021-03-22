@@ -8,5 +8,10 @@
   "notFilledMessage": "The board is not filled in!",
   "winMessage": "Congratulations! You solved it!",
   "lossMessage": "Nay. This is wrong.",
-  "goBack": "Back"
+  "goBack": "Back",
+  "settings": "Settings",
+  "hintsLabel": "When should errors be indicated?",
+  "hints: always": "Always",
+  "hints: on check": "On check",
+  "hints: none": "None"
 }

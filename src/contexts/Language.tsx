@@ -1,7 +1,6 @@
 import React, { createContext, PropsWithChildren, useState } from 'react';
 import { dictionaries, languageNames } from '../data/Languages';
 
-
 export const LanguageContext = createContext({
     language: 'en',
     dictionary: dictionaries.en,
