@@ -73,6 +73,10 @@ tr, td {
   height: var(--btn-size);
 }
 
+.cell-btn:disabled {
+  font-weight: bold;
+}
+
 .cell-btn.wrong {
   background-color: #e88080;
 }
